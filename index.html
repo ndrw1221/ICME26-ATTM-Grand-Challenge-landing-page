@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICME26 ATTM GC</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Smooth scroll -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 96px;
+    }
+
+    /* avoid sticky header overlap */
+  </style>
+</head>
+
+<body class="text-gray-800 bg-white">
+
+  <!-- ===== Banner / Header ===== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+      <div class="min-w-0">
+        <h1 class="text-lg sm:text-xl font-semibold">
+          ICME 2026 Academic Text-to-Music Generation Grand Challenge
+        </h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden sm:flex items-center gap-6 text-sm font-medium whitespace-nowrap">
+        <a href="#description" class="hover:text-blue-600">Description</a>
+        <a href="#evaluation" class="hover:text-blue-600">Evaluation</a>
+        <a href="#submission" class="hover:text-blue-600">Submission</a>
+        <a href="#organizers" class="hover:text-blue-600">Organizers</a>
+      </nav>
+
+      <!-- Mobile nav (simple) -->
+      <nav class="sm:hidden text-sm font-medium">
+        <a href="#description" class="hover:text-blue-600">Menu</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main Content ===== -->
+  <main class="max-w-4xl mx-auto px-6 py-16 space-y-24">
+
+    <!-- ===== Grand Challenge Description ===== -->
+    <section id="description" class="space-y-6">
+      <header class="space-y-2">
+        <h2 class="text-2xl font-semibold">Grand Challenge Description</h2>
+      </header>
+
+      <div class="space-y-4 leading-relaxed">
+        <p>
+          Since their inception, state-of-the-art Text-to-Music (TTM) models such as MusicLM and
+          MusicGen have been built upon a foundation of proprietary datasets and industrial-scale
+          compute clusters. While more recent efforts like Stable Audio Open (SAO) utilize public-domain
+          data, they still rely on massive computational resources that remain out of reach for most
+          academic researchers. This creates a "compute barrier" that forces academic labs into a
+          secondary role: instead of training models from scratch to explore fundamental architectural
+          innovations, researchers often settle for fine-tuning pre-trained "black-box" weights.
+        </p>
+
+        <p>
+          While fine-tuning is useful for domain adaptation or adding controllability, it offers only limited
+          ability to alter the core behavior learned by the base model. This dependency hinders the field's
+          scientific advancement, as core TTM research remains unaffordable for the broader
+          community. The ATTM Grand Challenge introduces a different rule to the game, by
+          establishing a "fair-play" benchmark. With a strict training-from-scratch requirement on a
+          standardized, CC-licensed, 457-hour dataset derived from MTG-Jamendo, the challenge
+          focuses on algorithmic efficiency and musical intelligence rather than data volume.
+        </p>
+
+        <p>To ensure transparency, we distinguish between components:</p>
+
+        <ul class="list-disc pl-6 space-y-2">
+          <li>
+            <span class="font-semibold">Core Generative Model:</span>
+            Must be trained strictly from scratch. No pre-trained weights are allowed. Examples of model
+            architectures include Transformers, State-Space Models, diffusion models, and flow-based models.
+          </li>
+          <li>
+            <span class="font-semibold">Auxiliary Components:</span>
+            Publicly available checkpoints are permitted for non-core-generative parts, specifically:
+            audio tokenizers and representation models (e.g., autoencoders that map audio to and from latent
+            spaces), Audio Language Models (ALMs) for captioning, and vocoders or audio enhancement models
+            for better audio quality. Proprietary or non-reproducible models are strictly prohibited.
+          </li>
+        </ul>
+
+        <p>
+          Any form of manual annotation or human-in-the-loop modification is disallowed. Participants
+          must declare all components; organizers reserve the right to verify training logs.
+        </p>
+
+        <p>
+          To avoid copyright concerns and to isolate musical structure from linguistic content, the
+          challenge focuses exclusively on instrumental music (i.e., not lyrics-to-song generation). To
+          ensure this, the training data will be preprocessed using state-of-the-art vocal separation tools.
+          Participants must generate purely instrumental music. Moreover, while participants may
+          generate their own captions using public ALMs, the organizers will provide two "Standard
+          Caption Sets" (based on Music Flamingo and Qwen2-audio) to ensure a baseline for all teams.
+        </p>
+
+        <p>To encourage participation, the challenge is structured into two tiers:</p>
+
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>
+            <span class="font-semibold">Efficiency Tier:</span>
+            Models are limited to a maximum of 500M parameters, encouraging innovation in efficient modeling.
+            Note that parameter count is chosen for verifiability; future iterations may consider other constraints
+            such as FLOPs or training time.
+          </li>
+          <li>
+            <span class="font-semibold">Performance Tier:</span>
+            No parameter limit, exploring the full potential of generative architectures trained on standardized
+            academic data.
+          </li>
+        </ol>
+
+        <p>
+          Baseline implementations will be provided to lower the entry barrier and ensure accessibility
+          for student and early-career research teams.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Evaluation Criteria ===== -->
+    <section id="evaluation" class="space-y-6">
+      <header class="space-y-2">
+        <h2 class="text-2xl font-semibold">Evaluation Criteria</h2>
+      </header>
+
+      <div class="space-y-4 leading-relaxed">
+        <p>
+          We employ a multi-stage evaluation pipeline that balances broad distributional quality with a
+          granular measure of semantic alignment.
+        </p>
+
+        <div class="rounded-xl border p-5 space-y-4">
+          <h3 class="text-lg font-semibold">Phase 1: Objective Ranking (The Scorecard)</h3>
+          <p>
+            To qualify for the finals, models are ranked based on a composite of three automated metrics.
+            This ensures that models are both musically "plausible" and semantically "accurate."
+          </p>
+
+          <ul class="list-disc pl-6 space-y-2">
+            <li>
+              <span class="font-semibold">Audio Quality (FAD):</span>
+              We compute the Fréchet Audio Distance (FAD) between the participants' generated set and a high-quality
+              hidden test audio set.
+            </li>
+            <li>
+              <span class="font-semibold">Semantic Similarity (CLAP):</span>
+              We use the CLAP Score to measure the global alignment between the user's text prompt and the generated
+              audio embeddings.
+            </li>
+            <li class="space-y-2">
+              <div>
+                <span class="font-semibold">Concept Coverage Score (CCS - The K/M Metric):</span>
+              </div>
+              <ul class="list-[circle] pl-6 space-y-2">
+                <li>
+                  For a given evaluation query containing M distinct musical concepts (e.g., "slow tempo," "acoustic
+                  guitar," "lo-fi"),
+                  we use ALMs as objective blind judges.
+                </li>
+                <li>
+                  The ALMs are tasked with a binary presence-detection for each concept. If the judges confirm the
+                  presence of K concepts,
+                  the model earns a score of K/M for that query.
+                </li>
+                <li>
+                  The final CCS is the average K/M across the evaluation set of prompts.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <p>
+          Participants must generate audio clips with a minimum length of 10 seconds. To ensure a fair
+          and standardized comparison, the evaluation (both automated and human) will be conducted
+          strictly on the first 10 seconds of the submitted audio. We intentionally adopt a short duration
+          for accessibility, while keeping participation costs manageable.
+        </p>
+
+        <div class="rounded-xl border p-5 space-y-4">
+          <h3 class="text-lg font-semibold">Phase 2: Human Evaluation (MOS)</h3>
+          <p>
+            Based on Phase 1 results, the Top N=5 teams from each tier (where N will be determined based
+            on the total number of participants) will proceed to a formal Mean Opinion Score (MOS) study.
+            Experts will rate these samples on:
+          </p>
+
+          <ol class="list-decimal pl-6 space-y-2">
+            <li>Audio Quality: Clarity and lack of compression artifacts.</li>
+            <li>Musicality: Rhythmic stability, harmonic progression, and phrasing.</li>
+            <li>Prompt Adherence: How well the audio reflects the specific nuances of the text.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Submission Criteria and Deadlines ===== -->
+    <section id="submission" class="space-y-6">
+      <header class="space-y-2">
+        <h2 class="text-2xl font-semibold">Submission Criteria and Deadlines</h2>
+      </header>
+
+      <div class="space-y-4 leading-relaxed">
+        <p>
+          Participants must submit 10-second audio clips (audio in WAV or MP3 format at 44.1kHz) for
+          the hidden test set of 100 prompts, along with their model code for parameter verification and
+          a short technical Grand Challenge (GC) paper. Organizers will coordinate peer reviews for
+          submitted GC papers, with optional placeholders for evaluation results to be added post-submission.
+          All submissions will be anonymized during evaluation. Organizers will host a 2-hour session at
+          ICME 2026, featuring participant presentations and a panel discussion.
+        </p>
+
+        <p>
+          To prevent cherry-picking and ensure reproducibility, all submissions must be generated in a
+          fully automatic manner using a single forward generation per prompt. i.e., no multiple candidate
+          generations followed by selection, regardless of the underlying sampling procedure.
+        </p>
+
+        <div class="rounded-xl border p-5 space-y-3">
+          <h3 class="text-lg font-semibold">Key Deadlines</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>February 10: Official Launch; release of training data and baseline code.</li>
+            <li>March 20: Registration Deadline; teams must indicate their willingness to participate to help organizers
+              prepare evaluation resources.</li>
+            <li>March 30: Dry Run; participants submit a small sample set to verify pipeline compatibility.</li>
+            <li>April 20: Release of Final Test Prompts.</li>
+            <li>April 23: Final Audio Submission Deadline (72-hour window).</li>
+            <li>April 30: Announcement of the Top N Finalists per tier.</li>
+            <li>May 20: Grand Challenge Paper Submission (up to 4 pages).</li>
+            <li>June 5: Final MOS results and paper acceptance notification.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Organizer’s Contact and Short Bio ===== -->
+    <section id="organizers" class="space-y-6">
+      <header class="space-y-2">
+        <h2 class="text-2xl font-semibold">Organizer’s Contact and Short Bio</h2>
+      </header>
+
+      <div class="space-y-6 leading-relaxed">
+        <div class="rounded-xl border p-5 space-y-2">
+          <p class="font-semibold">
+            Yi-Hsuan (Eric) Yang (yhyangtw@ntu.edu.tw | https://affige.github.io/)
+          </p>
+          <p>
+            is a Full Professor at National Taiwan University (NTU). His research focuses on generative models
+            for music, leading to the development of models like MidiNet, MuseGAN, and Pop Music Transformer.
+            He is a Senior Member of IEEE and a former Associate Editor for IEEE Transactions on Multimedia.
+          </p>
+        </div>
+
+        <div class="rounded-xl border p-5 space-y-2">
+          <p class="font-semibold">
+            Hao-Wen (Herman) Dong (hwdong@umich.edu | https://hermandong.com/)
+          </p>
+          <p>
+            is an Assistant Professor at the University of Michigan (UMich), specializing in generative models for
+            music.
+            He received his PhD from UCSD and has been recognized with the AAAI New Faculty Highlight and KAUST Rising
+            Stars in AI.
+            He organized the NeurIPS 2025 Workshop on AI for Music.
+          </p>
+        </div>
+
+        <div class="rounded-xl border p-5 space-y-2">
+          <p class="font-semibold">
+            Hung-Yi Lee (hungyilee@ntu.edu.tw | https://speech.ee.ntu.edu.tw/~hylee/)
+          </p>
+          <p>
+            is a Full Professor at NTU. He initiated the SUPERB benchmark for speech processing and has co-organized
+            numerous workshops, special sessions, or challenges at flagship venues including NeurIPS, ACL, ICML, ICASSP,
+            Interspeech, and ASRU. In the past five years, he has given tutorials at Interspeech, ICASSP, ACL, and
+            NAACL.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="border-t py-6 text-center text-sm text-gray-500">
+    © 2026 Academic Text-to-Music Generation (ATTM). All rights reserved.
+  </footer>
+
+</body>
+
+</html>
