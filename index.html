@@ -16,14 +16,14 @@
     }
 
     section {
-      scroll-margin-top: 400px;
-      /* Mobile-friendly default */
+      scroll-margin-top: 30px;
+      /* Mobile: only hamburger is sticky */
     }
 
     /* Larger scroll margin for desktop */
     @media (min-width: 640px) {
       section {
-        scroll-margin-top: 96px;
+        scroll-margin-top: 170px;
       }
     }
 
@@ -64,49 +64,65 @@
 <body class="text-gray-800 bg-white">
 
   <!-- ===== Banner / Header ===== -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-      <div class="min-w-0">
-        <h1 class="text-lg sm:text-xl font-semibold">
-          ICME 2026 Grand Challenge on Academic Text-to-Music Generation
-        </h1>
+  <header class="sm:sticky sm:top-0 z-40 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+      <!-- Logos and Title Section -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-4">
+        <!-- Logos -->
+        <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+          <img src="assets/icme26_logo.png" alt="ICME 2026" class="h-12 sm:h-16 w-auto object-contain">
+          <img src="assets/ntu_logo.jpg" alt="National Taiwan University" class="h-12 sm:h-16 w-auto object-contain">
+          <img src="assets/umich_logo.png" alt="University of Michigan" class="h-12 sm:h-16 w-auto object-contain">
+        </div>
+
+        <!-- Title -->
+        <div class="min-w-0 text-center sm:text-left">
+          <h1 class="text-lg sm:text-xl font-semibold">
+            ICME 2026 Grand Challenge on Academic Text-to-Music Generation
+          </h1>
+        </div>
       </div>
 
-      <!-- Navigation -->
-      <nav class="hidden sm:flex items-center gap-6 text-sm font-medium whitespace-nowrap">
-        <a href="#overview" class="hover:text-blue-600">Overview</a>
-        <!-- <a href="#tracks" class="hover:text-blue-600">Tracks</a> -->
-        <!-- <a href="#evaluation" class="hover:text-blue-600">Evaluation</a> -->
-        <a href="#participate" class="hover:text-blue-600">Participate</a>
-        <a href="#dataset" class="hover:text-blue-600">Dataset & Code</a>
-        <a href="#dates" class="hover:text-blue-600">Dates</a>
-        <a href="#contact" class="hover:text-blue-600">Contact</a>
-      </nav>
+      <!-- Navigation Bar (Desktop only) -->
+      <div class="hidden sm:flex items-center justify-center gap-6 pt-3 border-t">
+        <!-- Navigation -->
+        <nav class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
+          <a href="#overview" class="hover:text-blue-600">Overview</a>
+          <!-- <a href="#tracks" class="hover:text-blue-600">Tracks</a> -->
+          <!-- <a href="#evaluation" class="hover:text-blue-600">Evaluation</a> -->
+          <a href="#participate" class="hover:text-blue-600">Participate</a>
+          <a href="#dataset" class="hover:text-blue-600">Dataset & Code</a>
+          <a href="#dates" class="hover:text-blue-600">Dates</a>
+          <a href="#contact" class="hover:text-blue-600">Contact</a>
+        </nav>
+      </div>
 
-      <!-- Mobile hamburger button -->
-      <button id="mobile-menu-button" class="sm:hidden p-2 hover:bg-gray-100 rounded-lg hamburger"
-        aria-label="Toggle menu">
-        <div class="w-6 h-5 flex flex-col justify-between">
-          <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
-          <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
-          <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
-        </div>
-      </button>
-    </div>
-
-    <!-- Mobile menu panel -->
-    <div id="mobile-menu" class="mobile-menu sm:hidden border-t bg-white/95 backdrop-blur">
-      <nav class="max-w-6xl mx-auto px-6 py-4">
-        <div class="flex flex-col gap-4 text-sm font-medium">
-          <a href="#overview" class="hover:text-blue-600 py-2">Overview</a>
-          <a href="#participate" class="hover:text-blue-600 py-2">Participate</a>
-          <a href="#dataset" class="hover:text-blue-600 py-2">Dataset & Code</a>
-          <a href="#dates" class="hover:text-blue-600 py-2">Dates</a>
-          <a href="#contact" class="hover:text-blue-600 py-2">Contact</a>
-        </div>
-      </nav>
     </div>
   </header>
+
+  <!-- Mobile hamburger button (fixed on mobile, hidden on desktop) -->
+  <button id="mobile-menu-button"
+    class="sm:hidden fixed top-4 right-4 z-50 p-2 bg-white hover:bg-gray-100 rounded-lg shadow-md hamburger"
+    aria-label="Toggle menu">
+    <div class="w-6 h-5 flex flex-col justify-between">
+      <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
+      <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
+      <span class="hamburger-line w-full h-0.5 bg-gray-800 block"></span>
+    </div>
+  </button>
+
+  <!-- Mobile menu panel (outside header for proper z-index) -->
+  <div id="mobile-menu" class="mobile-menu sm:hidden fixed top-0 left-0 right-0 z-40 border-t bg-white shadow-lg">
+    <nav class="max-w-6xl mx-auto px-6 py-4">
+      <div class="flex flex-col gap-4 text-sm font-medium text-center">
+        <a href="#overview" class="hover:text-blue-600 py-2">Overview</a>
+        <a href="#participate" class="hover:text-blue-600 py-2">Participate</a>
+        <a href="#dataset" class="hover:text-blue-600 py-2">Dataset & Code</a>
+        <a href="#dates" class="hover:text-blue-600 py-2">Dates</a>
+        <a href="#contact" class="hover:text-blue-600 py-2">Contact</a>
+      </div>
+    </nav>
+  </div>
 
   <!-- ===== Main Content ===== -->
   <main class="max-w-4xl mx-auto px-6 py-16 space-y-16">
@@ -477,7 +493,7 @@
       <div class="space-y-6 leading-relaxed">
         <div class="rounded-xl border p-5 space-y-3">
           <p class="font-semibold text-lg">Yi-Hsuan (Eric) Yang</p>
-          <p class="text-sm text-gray-600">National Taiwan University</p>
+          <p class="text-sm text-gray-600">National Taiwan University, AI Center of Research Excellence</p>
           <div class="flex flex-wrap gap-3 text-sm">
             <a href="mailto:yhyangtw@ntu.edu.tw" class="text-blue-600 hover:underline">📧 yhyangtw@ntu.edu.tw</a>
             <a href="https://affige.github.io/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">🔗
@@ -497,7 +513,7 @@
 
         <div class="rounded-xl border p-5 space-y-3">
           <p class="font-semibold text-lg">Hung-Yi Lee</p>
-          <p class="text-sm text-gray-600">National Taiwan University</p>
+          <p class="text-sm text-gray-600">National Taiwan University, AI Center of Research Excellence</p>
           <div class="flex flex-wrap gap-3 text-sm">
             <a href="mailto:hungyilee@ntu.edu.tw" class="text-blue-600 hover:underline">📧 hungyilee@ntu.edu.tw</a>
             <a href="https://speech.ee.ntu.edu.tw/~hylee/" target="_blank" rel="noopener"
