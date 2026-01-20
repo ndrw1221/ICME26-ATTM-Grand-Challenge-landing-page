@@ -58,6 +58,63 @@
     .hamburger.active .hamburger-line:nth-child(3) {
       transform: rotate(-45deg) translate(7px, -6px);
     }
+
+    /* Dropdown menu styles */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 220px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      border-radius: 0.5rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.5rem;
+      z-index: 50;
+    }
+
+    .nav-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #374151;
+      font-size: 0.875rem;
+      transition: background-color 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f3f4f6;
+      color: #2563eb;
+    }
+
+    /* Mobile dropdown */
+    .mobile-dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .mobile-dropdown-content.active {
+      max-height: 300px;
+    }
+
+    .dropdown-arrow {
+      display: inline-block;
+      margin-left: 0.25rem;
+      transition: transform 0.2s;
+    }
+
+    .mobile-dropdown.active .dropdown-arrow {
+      transform: rotate(90deg);
+    }
   </style>
 </head>
 
@@ -88,7 +145,15 @@
       <div class="hidden sm:flex items-center justify-center gap-6 pt-3 border-t">
         <!-- Navigation -->
         <nav class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
-          <a href="#overview" class="hover:text-blue-600">Overview</a>
+          <div class="nav-dropdown">
+            <a href="#overview" class="hover:text-blue-600">Overview</a>
+            <div class="dropdown-content">
+              <a href="#description">Grand Challenge Description</a>
+              <a href="#tracks">Tracks</a>
+              <a href="#rewards">Rewards</a>
+              <a href="#evaluation">Evaluation Criteria</a>
+            </div>
+          </div>
           <a href="#participate" class="hover:text-blue-600">Participate</a>
           <a href="#dataset" class="hover:text-blue-600">Dataset & Code</a>
           <a href="#dates" class="hover:text-blue-600">Dates</a>
@@ -114,7 +179,18 @@
   <div id="mobile-menu" class="mobile-menu sm:hidden fixed top-0 left-0 right-0 z-40 border-t bg-white shadow-lg">
     <nav class="max-w-6xl mx-auto px-6 py-4">
       <div class="flex flex-col gap-4 text-sm font-medium text-center">
-        <a href="#overview" class="hover:text-blue-600 py-2">Overview</a>
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-toggle w-full hover:text-blue-600 py-2">
+            Overview <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="mobile-dropdown-content pl-4 text-gray-500">
+            <a href="#overview" class="block hover:text-blue-600 py-2">Overview</a>
+            <a href="#description" class="block hover:text-blue-600 py-2">Grand Challenge Description</a>
+            <a href="#tracks" class="block hover:text-blue-600 py-2">Tracks</a>
+            <a href="#rewards" class="block hover:text-blue-600 py-2">Rewards</a>
+            <a href="#evaluation" class="block hover:text-blue-600 py-2">Evaluation Criteria</a>
+          </div>
+        </div>
         <a href="#participate" class="hover:text-blue-600 py-2">Participate</a>
         <a href="#dataset" class="hover:text-blue-600 py-2">Dataset & Code</a>
         <a href="#dates" class="hover:text-blue-600 py-2">Dates</a>
@@ -595,6 +671,19 @@
       mobileMenu.classList.toggle('active');
       mobileMenuButton.classList.toggle('active');
     });
+
+    // Mobile dropdown toggle
+    const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
+    const mobileDropdown = document.querySelector('.mobile-dropdown');
+    const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
+
+    if (mobileDropdownToggle) {
+      mobileDropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileDropdownContent.classList.toggle('active');
+        mobileDropdown.classList.toggle('active');
+      });
+    }
 
     // Close mobile menu when clicking on a link
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
