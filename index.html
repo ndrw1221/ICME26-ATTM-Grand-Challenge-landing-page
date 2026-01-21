@@ -23,7 +23,8 @@
     /* Larger scroll margin for desktop */
     @media (min-width: 640px) {
       section {
-        scroll-margin-top: 170px;
+        scroll-margin-top: 70px;
+        /* Adjusted for sticky nav bar only */
       }
     }
 
@@ -121,30 +122,37 @@
 <body class="text-gray-800 bg-white">
 
   <!-- ===== Banner / Header ===== -->
-  <header class="sm:sticky sm:top-0 z-40 bg-white/90 backdrop-blur border-b">
-    <div class="max-w-6xl mx-auto px-3 py-4">
+  <header class="border-b">
+    <div class="max-w-6xl mx-auto px-4 py-5">
       <!-- Logos and Title Section -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-4">
-        <!-- Logos -->
-        <div class="flex items-center gap-4 sm:gap-6 shrink-0">
-          <img src="assets/ntu_logo.jpg" alt="National Taiwan University" class="h-12 sm:h-16 w-auto object-contain">
-          <img src="assets/umich_logo.png" alt="University of Michigan" class="h-12 sm:h-16 w-auto object-contain">
-          <img src="assets/icme26_logo.png" alt="ICME 2026" class="h-11 sm:h-14 w-auto object-contain">
-          <img src="assets/moises_logo.png" alt="Moises" class="h-11 sm:h-12 w-auto object-contain">
-        </div>
-
+      <div class="flex flex-col items-center gap-6">
         <!-- Title -->
-        <div class="min-w-0 text-center sm:text-left">
-          <h1 class="text-lg sm:text-2xl font-semibold">
+        <div class="text-center">
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold leading-tight">
             ICME 2026 Grand Challenge on Academic Text-to-Music Generation
           </h1>
         </div>
-      </div>
 
-      <!-- Navigation Bar (Desktop only) -->
-      <div class="hidden sm:flex items-center justify-center gap-6 pt-3 border-t">
-        <!-- Navigation -->
-        <nav class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
+        <!-- Logos -->
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10">
+          <img src="assets/ntu_logo.jpg" alt="National Taiwan University"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/umich_logo.png" alt="University of Michigan"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/icme26_logo.png" alt="ICME 2026"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/moises_logo.png" alt="Moises"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar (Desktop only - Sticky) -->
+  <nav class="hidden sm:block sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-center gap-6">
+        <div class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
           <div class="nav-dropdown">
             <a href="#overview" class="hover:text-blue-600">Overview</a>
             <div class="dropdown-content">
@@ -158,11 +166,10 @@
           <a href="#dataset" class="hover:text-blue-600">Dataset & Code</a>
           <a href="#dates" class="hover:text-blue-600">Dates</a>
           <a href="#contact" class="hover:text-blue-600">Contact</a>
-        </nav>
+        </div>
       </div>
-
     </div>
-  </header>
+  </nav>
 
   <!-- Mobile hamburger button (fixed on mobile, hidden on desktop) -->
   <button id="mobile-menu-button"
