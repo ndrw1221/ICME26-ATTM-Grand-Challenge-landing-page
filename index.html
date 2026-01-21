@@ -23,7 +23,8 @@
     /* Larger scroll margin for desktop */
     @media (min-width: 640px) {
       section {
-        scroll-margin-top: 170px;
+        scroll-margin-top: 70px;
+        /* Adjusted for sticky nav bar only */
       }
     }
 
@@ -121,36 +122,43 @@
 <body class="text-gray-800 bg-white">
 
   <!-- ===== Banner / Header ===== -->
-  <header class="sm:sticky sm:top-0 z-40 bg-white/90 backdrop-blur border-b">
-    <div class="max-w-6xl mx-auto px-3 py-4">
+  <header class="border-b">
+    <div class="max-w-6xl mx-auto px-4 py-5">
       <!-- Logos and Title Section -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-4">
-        <!-- Logos -->
-        <div class="flex items-center gap-4 sm:gap-6 shrink-0">
-          <img src="assets/ntu_logo.jpg" alt="National Taiwan University" class="h-12 sm:h-16 w-auto object-contain">
-          <img src="assets/umich_logo.png" alt="University of Michigan" class="h-12 sm:h-16 w-auto object-contain">
-          <img src="assets/icme26_logo.png" alt="ICME 2026" class="h-11 sm:h-14 w-auto object-contain">
-          <img src="assets/moises_logo.png" alt="Moises" class="h-11 sm:h-12 w-auto object-contain">
-        </div>
-
+      <div class="flex flex-col items-center gap-6">
         <!-- Title -->
-        <div class="min-w-0 text-center sm:text-left">
-          <h1 class="text-lg sm:text-2xl font-semibold">
+        <div class="text-center">
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold leading-tight">
             ICME 2026 Grand Challenge on Academic Text-to-Music Generation
           </h1>
         </div>
-      </div>
 
-      <!-- Navigation Bar (Desktop only) -->
-      <div class="hidden sm:flex items-center justify-center gap-6 pt-3 border-t">
-        <!-- Navigation -->
-        <nav class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
+        <!-- Logos -->
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10">
+          <img src="assets/ntu_logo.jpg" alt="National Taiwan University"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/umich_logo.png" alt="University of Michigan"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/icme26_logo.png" alt="ICME 2026"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+          <img src="assets/moises_logo.png" alt="Moises"
+            class="h-14 sm:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar (Desktop only - Sticky) -->
+  <nav class="hidden sm:block sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-center gap-6">
+        <div class="flex items-center gap-6 text-sm font-medium whitespace-nowrap">
           <div class="nav-dropdown">
             <a href="#overview" class="hover:text-blue-600">Overview</a>
             <div class="dropdown-content">
               <a href="#description">Grand Challenge Description</a>
               <a href="#tracks">Tracks</a>
-              <a href="#rewards">Rewards</a>
+              <a href="#awards">Awards</a>
               <a href="#evaluation">Evaluation Criteria</a>
             </div>
           </div>
@@ -158,11 +166,10 @@
           <a href="#dataset" class="hover:text-blue-600">Dataset & Code</a>
           <a href="#dates" class="hover:text-blue-600">Dates</a>
           <a href="#contact" class="hover:text-blue-600">Contact</a>
-        </nav>
+        </div>
       </div>
-
     </div>
-  </header>
+  </nav>
 
   <!-- Mobile hamburger button (fixed on mobile, hidden on desktop) -->
   <button id="mobile-menu-button"
@@ -187,7 +194,7 @@
             <a href="#overview" class="block hover:text-blue-600 py-2">Overview</a>
             <a href="#description" class="block hover:text-blue-600 py-2">Grand Challenge Description</a>
             <a href="#tracks" class="block hover:text-blue-600 py-2">Tracks</a>
-            <a href="#rewards" class="block hover:text-blue-600 py-2">Rewards</a>
+            <a href="#awards" class="block hover:text-blue-600 py-2">Awards</a>
             <a href="#evaluation" class="block hover:text-blue-600 py-2">Evaluation Criteria</a>
           </div>
         </div>
@@ -345,10 +352,10 @@
       </div>
     </section>
 
-    <!-- ===== Rewards ===== -->
-    <section id="rewards" class="space-y-6">
+    <!-- ===== Awards ===== -->
+    <section id="awards" class="space-y-6">
       <header class="space-y-2">
-        <h2 class="text-2xl font-semibold">Rewards</h2>
+        <h2 class="text-2xl font-semibold">Awards</h2>
       </header>
 
       <div class="space-y-6 leading-relaxed">
@@ -358,7 +365,7 @@
 
         <p>
           We are proud to partner with <a href="https://moises.ai/" target="_blank" rel="noopener"
-            class="text-blue-600 hover:underline font-semibold">Moises</a> to offer cash rewards to the best performing
+            class="text-blue-600 hover:underline font-semibold">Moises</a> to offer cash awards to the best performing
           teams in this challenge.
         </p>
 
@@ -459,8 +466,8 @@
         <div class="rounded-xl border p-5 space-y-4">
           <h3 class="text-lg font-semibold">Phase 2: Human Evaluation (MOS)</h3>
           <p>
-            Based on Phase 1 rankings, the <span class="font-semibold">Top</span><span
-              class="font-semibold text-red-600"> N </span><span class="font-semibold">teams per track</span> advance to
+            Based on Phase 1 rankings, the <span class="font-semibold">Top <span class="text-red-600">N</span> teams per
+              track</span> advance to
             a formal Mean Opinion Score (MOS) study conducted by expert listeners.
           </p>
 
@@ -519,7 +526,7 @@
             <li>
               <span class="font-semibold">A short Grand Challenge paper</span> (up to 4 pages)
               <p class="text-sm text-gray-600">Grand Challenge papers are required only from finalist teams
-                (announced April 30, 2026) and must be submitted by May 20, 2026. Papers from non-finalist teams, though
+                (announced April 30, 2026) and must be submitted by May 15, 2026. Papers from non-finalist teams, though
                 not required, are still encouraged and welcome.
               </p>
             </li>
@@ -598,11 +605,11 @@
             </li>
             <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <span class="font-semibold text-blue-600 sm:min-w-[4.5rem]">Mar 30, 2026</span>
-              <span>Dry run submission deadline (pipeline verification)</span>
+              <span>Dry-run submission deadline (pipeline verification)</span>
             </li>
             <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <span class="font-semibold text-blue-600 sm:min-w-[4.5rem]">Apr 20, 2026</span>
-              <span>Final test prompts release</span>
+              <span>Final test prompts released</span>
             </li>
             <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <span class="font-semibold text-red-600 sm:min-w-[4.5rem]">Apr 23, 2026</span>
@@ -613,12 +620,17 @@
               <span>Finalists announcement</span>
             </li>
             <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
-              <span class="font-semibold text-blue-600 sm:min-w-[4.5rem]">May 20, 2026</span>
+              <span class="font-semibold text-blue-600 sm:min-w-[4.5rem]">May 15, 2026</span>
               <span>Grand Challenge paper submission deadline</span>
             </li>
             <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
-              <span class="font-semibold text-green-600 sm:min-w-[4.5rem]">Jun 05, 2026</span>
-              <span><span class="font-semibold">Final MOS results & paper acceptance notification</span></span>
+              <span class="font-semibold text-green-600 sm:min-w-[4.5rem]">May 22, 2026</span>
+              <span><span class="font-semibold">Final MOS results & announcement of winners & paper acceptance
+                  notification</span></span>
+            </li>
+            <li class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <span class="font-semibold text-blue-600 sm:min-w-[4.5rem]">May 30, 2026</span>
+              <span>Camera-ready and author registration deadline</span>
             </li>
           </ul>
         </div>
@@ -633,7 +645,7 @@
 
       <div class="space-y-6 leading-relaxed">
         <div class="rounded-xl border p-5 space-y-3">
-          <p class="font-semibold text-lg">Yi-Hsuan (Eric) Yang</p>
+          <p class="font-semibold text-lg">Dr. Yi-Hsuan (Eric) Yang</p>
           <p class="text-sm text-gray-600">National Taiwan University, AI Center of Research Excellence</p>
           <div class="flex flex-wrap gap-3 text-sm">
             <a href="mailto:yhyangtw@ntu.edu.tw" class="text-blue-600 hover:underline">📧 yhyangtw@ntu.edu.tw</a>
@@ -643,7 +655,7 @@
         </div>
 
         <div class="rounded-xl border p-5 space-y-3">
-          <p class="font-semibold text-lg">Hao-Wen (Herman) Dong</p>
+          <p class="font-semibold text-lg">Dr. Hao-Wen (Herman) Dong</p>
           <p class="text-sm text-gray-600">University of Michigan</p>
           <div class="flex flex-wrap gap-3 text-sm">
             <a href="mailto:hwdong@umich.edu" class="text-blue-600 hover:underline">📧 hwdong@umich.edu</a>
@@ -653,7 +665,7 @@
         </div>
 
         <div class="rounded-xl border p-5 space-y-3">
-          <p class="font-semibold text-lg">Hung-Yi Lee</p>
+          <p class="font-semibold text-lg">Dr. Hung-Yi Lee</p>
           <p class="text-sm text-gray-600">National Taiwan University, AI Center of Research Excellence</p>
           <div class="flex flex-wrap gap-3 text-sm">
             <a href="mailto:hungyilee@ntu.edu.tw" class="text-blue-600 hover:underline">📧 hungyilee@ntu.edu.tw</a>
@@ -661,10 +673,38 @@
               class="text-blue-600 hover:underline">🔗 https://speech.ee.ntu.edu.tw/~hylee/</a>
           </div>
         </div>
+
+        <div class="rounded-xl border p-5 space-y-3">
+          <p class="font-semibold text-lg">Fang-Chih (Andrew) Hsieh</p>
+          <p class="text-sm text-gray-600">National Taiwan University, Music and AI Lab</p>
+          <div class="flex flex-wrap gap-3 text-sm">
+            <a href="mailto:andrew891221@gmail.com" class="text-blue-600 hover:underline">📧 andrew891221@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="rounded-xl border p-5 space-y-3">
+          <p class="font-semibold text-lg">Wei-Jaw (Lonian) Lee</p>
+          <p class="text-sm text-gray-600">National Taiwan University, Music and AI Lab</p>
+          <div class="flex flex-wrap gap-3 text-sm">
+            <a href="mailto:weijaw2000@gmail.com" class="text-blue-600 hover:underline">📧 weijaw2000@gmail.com</a>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
+
+  <!-- ===== Acknowledgment ===== -->
+  <section class="max-w-6xl mx-auto px-4 py-8 border-t">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800">Acknowledgment</h2>
+      <p class="text-gray-600 leading-relaxed">
+        This challenge is sponsored by Moises.ai and supported by grants from Google Asia Pacific, the National Science
+        and Technology Council of Taiwan (NSTC 114-2628-E-002-013-MY3), and the Ministry of Education (MOE) of Taiwan
+        (for Taiwan Centers of Excellence).
+      </p>
+    </div>
+  </section>
 
   <!-- ===== Footer ===== -->
   <footer class="border-t py-6 text-center text-sm text-gray-500">
